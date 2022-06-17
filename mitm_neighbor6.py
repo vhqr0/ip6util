@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import socket
 import scapy.all as sp
 import argparse
 
@@ -15,7 +16,7 @@ flagr = args.flagr
 target = args.target
 item = args.item
 
-sock = socke.tsocket(socket.AF_INET6, socket.SOCK_RAW, socket.IPPROTO_ICMPV6)
+sock = socket.socket(socket.AF_INET6, socket.SOCK_RAW, socket.IPPROTO_ICMPV6)
 sock.setsockopt(socket.SOL_SOCKET, socket.SO_BINDTODEVICE, interface.encode())
 sock.setsockopt(socket.IPPROTO_IPV6, socket.IPV6_UNICAST_HOPS, 255)
 
