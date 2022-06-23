@@ -3,7 +3,7 @@
 import sys
 import signal
 import socket
-from icmp6filter import icmp6setfilter, ICMP6_ND_ROUTER_ADVERT
+from icmp6filter import *
 import scapy.all as sp
 import argparse
 
@@ -24,7 +24,10 @@ sock = socket.socket(socket.AF_INET6, socket.SOCK_RAW, socket.IPPROTO_ICMPV6)
 sock.setsockopt(socket.SOL_SOCKET, socket.SO_BINDTODEVICE, interface.encode())
 sock.setsockopt(socket.IPPROTO_IPV6, socket.IPV6_UNICAST_HOPS, 255)
 sock.setsockopt(socket.IPPROTO_IPV6, socket.IPV6_MULTICAST_HOPS, 255)
-icmp6setfilter(sock, ICMP6_ND_ROUTER_ADVERT)
+icmp6f = ICMP6Filter()
+icmp6f.setblockall()
+icmp6f.setpass(ICMP6ND_RA)
+icmp6f.setsockopt(sock)
 
 def send_na():
     sock.sendto(buf, (target, 0))
