@@ -8,6 +8,16 @@ usage: ./ip6ctl.sh {start|stop|restart|fw|nofw|status}
 
 开启、关闭或重启内核IPv6、IPv6转发。
 
+# ping6
+
+## usage
+
+usage: ./ping6.py [-i interface] [-ear [address]] [-l length]
+
+## description
+
+Ping(-e address)、ARPing(-a address)或RSPing(-r)。
+
 # fake_router6、kill_router6
 
 ## usage
